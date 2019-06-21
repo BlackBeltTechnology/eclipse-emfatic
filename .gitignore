@@ -10,7 +10,6 @@
 !**/config/lombok.config
 /**/*.pyc
 /**/*~
-/**/gen/
 # model
 **/.runtime
 **/data/localmodel
