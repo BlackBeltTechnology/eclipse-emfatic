@@ -1,0 +1,236 @@
+## Eclipse Emfatic
+
+This bundle wraps eclipse emfatic (https://www.eclipse.org/emfatic/) as standalone and OSGi ready bundle. It is modified to be not dependent on eclipse framework, only EMF.
+
+There is helper class which handles emfatic scripts as ResourceSet and Resource. 
+
+### Example
+
+#### rdbms.emf
+
+[source,java]
+----
+@namespace(uri="http://blackbelt.hu/judo/meta/rdbms", prefix="rdbms")
+package rdbms;
+
+abstract class RdbmsElement {
+  attr String[1] name;
+  !unique attr String[1] uuid;
+  attr String shortName;
+  attr String fullName;
+  attr String description;
+  attr String sqlName;
+  attr String originalName;
+  attr String originalPackage;
+}
+
+class RdbmsTable extends RdbmsElement {
+  val RdbmsField[*]#table fields;
+  val RdbmsUniqueConstraint[*]#table uniqueConstraints;
+  ref RdbmsIdentifierField[1] primaryKey;
+  val RdbmsIndex[*]#table indexes;
+  ref RdbmsTable[*] parents;
+}
+
+abstract class RdbmsField extends RdbmsElement {
+  ref RdbmsTable[1]#fields table;
+  attr boolean[1] mandatory;
+  attr String rdbmsTypeName;
+  attr int size;
+  attr int precision;
+  attr int scale;
+  attr int storageByte;
+}
+
+class RdbmsForeignKey extends RdbmsIdentifierField {
+  ref RdbmsIdentifierField[1]#foreignKeys referenceKey;
+  attr boolean inheritenceBased = false;
+  attr String[1] foreignKeySqlName;
+  attr boolean deleteOnCascade = false;
+  attr boolean deferred = false;
+  attr boolean readOnly = false;
+}
+
+class RdbmsUniqueConstraint extends RdbmsElement {
+  ref RdbmsTable[1]#uniqueConstraints table;
+  ref RdbmsField[+] fields;
+}
+
+class RdbmsJunctionTable extends RdbmsTable {
+  ref RdbmsForeignKey[1] field1;
+  ref RdbmsForeignKey[1] field2;
+}
+
+class RdbmsIdentifierField extends RdbmsField {
+  ref RdbmsForeignKey[*]#referenceKey foreignKeys;
+}
+
+class RdbmsView extends RdbmsElement {
+  val RdbmsViewField[*]#view fields;
+  ref RdbmsTableAlias[1] primaryTable;
+  attr String originUuid;
+  val RdbmsViewRelation[*] relations;
+  ref RdbmsViewIdentifierField[1] primaryIdentifierField;
+  val RdbmsTableAlias[+]#view tables;
+}
+
+abstract class RdbmsViewField extends RdbmsElement {
+  ref RdbmsView[1]#fields view;
+  attr boolean[1] inherited;
+}
+
+class RdbmsViewValueField extends RdbmsViewAliasField {
+}
+
+class RdbmsViewExpressionField extends RdbmsViewField {
+  val RdbmsExpression[+] expressions;
+  attr String[1] expression;
+}
+
+abstract class RdbmsExpression extends RdbmsElement {
+  attr String expression;
+}
+
+class RdbmsModel {
+  val RdbmsTable[*] rdbmsTables;
+  val RdbmsView[*] rdbmsViews;
+  val RdbmsConfiguration[1] configuration;
+  attr String version;
+  val RdbmsTableOperation[*] tableOperations;
+  val RdbmsViewRecord[*] viewRecords;
+}
+
+class RdbmsValueField extends RdbmsField {
+  attr boolean technical = false;
+}
+
+class RdbmsViewIdentifierField extends RdbmsViewAliasField {
+}
+
+class RdbmsConfiguration {
+  attr String[1] dialect;
+  val RdbmsFeature[*] features;
+}
+
+class RdbmsFeature {
+  attr String[1] name;
+}
+
+class RdbmsTableAlias extends RdbmsElement {
+  ref RdbmsTable[1] table;
+  ref RdbmsView[1]#tables view;
+}
+
+class RdbmsLabelExpression extends RdbmsExpression {
+  attr String[1] text;
+}
+
+class RdbmsRelationExpression extends RdbmsExpression {
+  ref RdbmsViewAliasField[1] field;
+}
+
+abstract class RdbmsViewAliasField extends RdbmsViewTableField {
+  ref RdbmsTableAlias[1] alias;
+}
+
+class RdbmsModifyTableOperation extends RdbmsTableOperation {
+  val RdbmsCreateFieldOperation[*] createFieldOperations;
+  val RdbmsModifyFieldOperation[*] modifyFieldOperations;
+  val RdbmsDeleteFieldOperation[*] deleteFieldOperations;
+  ref RdbmsTable[1] previousTable;
+  attr boolean nameChanged;
+}
+
+abstract class RdbmsFieldOperation extends RdbmsElement {
+  ref RdbmsField[1] field;
+  attr boolean[1] reviewRequired = false;
+}
+
+class RdbmsCreateFieldOperation extends RdbmsFieldOperation {
+}
+
+class RdbmsModifyFieldOperation extends RdbmsFieldOperation {
+  attr boolean typeChanged = false;
+  attr boolean mandatoryChanged = false;
+  ref RdbmsField[1] previousField;
+  attr boolean sizeChanged;
+  attr boolean nameChanged;
+  attr boolean changedValueFieldToForeignKey;
+  attr boolean changedForeignKeyToValueField;
+}
+
+class RdbmsDeleteFieldOperation extends RdbmsFieldOperation {
+}
+
+class RdbmsViewRelation {
+  ref RdbmsTableAlias[1] fromAlias;
+  ref RdbmsTableAlias[1] toAlias;
+  attr String[1] name;
+  ref RdbmsIdentifierField[1] fromField;
+  ref RdbmsIdentifierField[1] toField;
+}
+
+abstract class RdbmsViewTableField extends RdbmsViewField {
+  ref RdbmsField[1] tableField;
+  attr boolean[1] foreign = false;
+}
+
+class RdbmsViewForeignIdentifierField extends RdbmsViewTableField {
+  ref RdbmsViewIdentifierField[1] referenceIdentifier;
+}
+
+class RdbmsIndex extends RdbmsElement {
+  ref RdbmsTable[1]#indexes table;
+  ref RdbmsField[+] fields;
+  attr boolean[1] ~unique;
+}
+
+class RdbmsViewRecord {
+  val RdbmsViewRecordValue[*] values;
+  ref RdbmsView[1] view;
+}
+
+class RdbmsViewRecordValue {
+  attr String value;
+  ref RdbmsViewIdentifierField identifierField;
+  ref RdbmsViewValueField valueField;
+}
+
+abstract class RdbmsTableOperation extends RdbmsElement {
+  ref RdbmsTable[1] table;
+}
+
+class RdbmsCreateTableOperation extends RdbmsTableOperation {
+}
+
+class RdbmsDeleteTableOperation extends RdbmsTableOperation {
+}
+
+class RdbmsOperationMeta {
+  ref RdbmsModel[1] previousModel;
+  ref RdbmsModel[1] currentModel;
+}
+----
+
+
+## Example of loading Emfatic as Ecore resource
+
+[source,java]
+----
+final ResourceSet resourceSet = new ResourceSetImpl();
+resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("emf", new EmfaticResourceFactoryImpl());
+final File rdbmsEmfatic = new File("target/test-classes/rdbms.emf");
+final Resource resource = resourceSet.getResource(URI.createFileURI(rdbmsEmfatic.getAbsolutePath()), true);
+
+final EClass rdbmsClass = (EClass) resourceSet.getResources().get(0).getEObject("//RdbmsField");
+assertEquals(rdbmsClass.getName(), "RdbmsField");
+----
+
+
+## Example of getting Ecore resource as Emfatic source
+
+[source,java]
+----
+EcoreEmfaticWriter ecoreEmfaticWriter = new EcoreEmfaticWriter();
+ecoreEmfaticWriter.write(resource)
+----
