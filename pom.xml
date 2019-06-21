@@ -15,8 +15,8 @@
         <system>GitHub Issues</system>
     </issueManagement>
     <properties>
-        <project-shortname>judo-meta-archetype</project-shortname>
-        <project-repositoryId>BlackBeltTechnology/judo-meta-archetype</project-repositoryId>
+        <project-shortname>eclipse-emfatic</project-shortname>
+        <project-repositoryId>BlackBeltTechnology/eclipse-emfatic</project-repositoryId>
     </properties>
     
     <scm>
