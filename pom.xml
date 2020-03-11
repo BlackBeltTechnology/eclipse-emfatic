@@ -123,13 +123,6 @@
 
                         <Import-Package>
                             !lombok,
-                            com.google.common.base;version="[14.0,30)",
-                            com.google.common.cache;version="[14.0,30)",
-                            com.google.common.collect;version="[14.0,30)",
-                            com.google.common.io;version="[14.0,30)",
-                            com.google.common.primitives;version="[14.0,30)",
-                            com.google.common.hash;version="[14.0,30)",
-                            com.google.common.util.concurrent;version="[14.0,30)",
                             javax.annotation;version="[1.0,2)",
                             *
                         </Import-Package>
@@ -183,7 +176,7 @@
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
-            <version>18.0</version>
+            <version>20.0</version>
             <scope>provided</scope>
         </dependency>
         
