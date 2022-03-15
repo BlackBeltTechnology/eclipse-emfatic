@@ -5,8 +5,8 @@
     <groupId>hu.blackbelt.eclipse</groupId>
     <artifactId>eclipse-emfatic</artifactId>
     <packaging>bundle</packaging>
-    <version>0.8.0-SNAPSHOT</version>
-    
+    <version>${revision}</version>
+
     <name>Eclipse :: Emfatic</name>
     <description>Eclipse Emfatic runtime for OSGi/Maven. It wraps the Emfatic parsing functions</description>
     <url>http://github.com/BlackBeltTechnology/eclipse-emfatic</url>
@@ -14,9 +14,12 @@
         <url>https://github.com/BlackBeltTechnology/eclipse-emfatic/issues</url>
         <system>GitHub Issues</system>
     </issueManagement>
+
     <properties>
         <project-shortname>eclipse-emfatic</project-shortname>
         <project-repositoryId>BlackBeltTechnology/eclipse-emfatic</project-repositoryId>
+        <revision>0.8.0-SNAPSHOT</revision>
+        <deployOnly>false</deployOnly>
     </properties>
     
     <scm>
