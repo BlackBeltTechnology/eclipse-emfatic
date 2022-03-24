@@ -21,6 +21,7 @@
         <revision>0.8.0-SNAPSHOT</revision>
         <maven>3.8.3</maven>
         <deployOnly>false</deployOnly>
+        <karaf-version>4.3.4</karaf-version>
     </properties>
     
     <scm>
