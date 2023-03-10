@@ -60,12 +60,12 @@
             <organizationUrl>http://www.blackbelt.hu</organizationUrl>
         </developer>
     </developers>
-    
+
     <licenses>
         <license>
-            <name>The Apache Software License, Version 2.0</name>
-            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
             <distribution>repo</distribution>
+            <name>Eclipse Public License 2.0</name>
+            <url>https://www.eclipse.org/org/documents/epl-2.0/EPL-2.0.txt</url>
         </license>
     </licenses>
 
@@ -658,7 +658,7 @@
                                 </goals>
                                 <phase>process-sources</phase>
                                 <configuration>
-                                    <licenseName>apache_v2</licenseName>
+                                    <licenseName>epl_v2</licenseName>
                                     <roots>
                                         <root>src/main/java</root>
                                         <root>src/test</root>
