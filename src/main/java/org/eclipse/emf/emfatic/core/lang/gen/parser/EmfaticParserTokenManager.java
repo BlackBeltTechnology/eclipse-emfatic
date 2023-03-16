@@ -10,13 +10,13 @@ package org.eclipse.emf.emfatic.core.lang.gen.parser;
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
  * http://www.eclipse.org/legal/epl-2.0.
- * 
+ *
  * This Source Code may also be made available under the following Secondary
  * Licenses when the conditions for such availability set forth in the Eclipse
  * Public License, v. 2.0 are satisfied: GNU General Public License, version 2
  * with the GNU Classpath Exception which is
  * available at https://www.gnu.org/software/classpath/license.html.
- * 
+ *
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  * #L%
  */
@@ -895,7 +895,7 @@ private int jjMoveStringLiteralDfa1_1(long active0)
    return 2;
 }
 static final int[] jjnextStates = {
-   16, 22, 8, 10, 11, 1, 2, 4, 9, 12, 17, 19, 
+   16, 22, 8, 10, 11, 1, 2, 4, 9, 12, 17, 19,
 };
 private static final boolean jjCanMove_0(int hiByte, int i1, int i2, long l1, long l2)
 {
@@ -932,18 +932,18 @@ private static final boolean jjCanMove_1(int hiByte, int i1, int i2, long l1, lo
 
 /** Token literal values. */
 public static final String[] jjstrLiteralImages = {
-"", null, null, null, null, null, "\160\141\143\153\141\147\145", 
-"\143\154\141\163\163", "\151\155\160\157\162\164", "\141\142\163\164\162\141\143\164", 
-"\151\156\164\145\162\146\141\143\145", "\145\170\164\145\156\144\163", "\163\165\160\145\162", "\141\164\164\162", 
-"\162\145\146", "\166\141\154", "\162\145\141\144\157\156\154\171", 
-"\166\157\154\141\164\151\154\145", "\164\162\141\156\163\151\145\156\164", 
-"\165\156\163\145\164\164\141\142\154\145", "\144\145\162\151\166\145\144", "\165\156\151\161\165\145", 
-"\157\162\144\145\162\145\144", "\162\145\163\157\154\166\145", "\151\144", "\164\162\165\145", 
-"\146\141\154\163\145", "\157\160", "\166\157\151\144", "\144\141\164\141\164\171\160\145", 
-"\145\156\165\155", "\155\141\160\145\156\164\162\171", "\164\150\162\157\167\163", null, null, 
-null, null, "\173", "\175", "\133", "\135", "\50", "\51", "\56", "\54", "\72", 
-"\73", "\52", "\53", "\55", "\75", "\77", "\41", "\44", "\43", "\100", "\56\56", 
-"\55\76", "\76\74", "\74\76", "\46", "\74", "\76", null, null, null, null, null, null, 
+"", null, null, null, null, null, "\160\141\143\153\141\147\145",
+"\143\154\141\163\163", "\151\155\160\157\162\164", "\141\142\163\164\162\141\143\164",
+"\151\156\164\145\162\146\141\143\145", "\145\170\164\145\156\144\163", "\163\165\160\145\162", "\141\164\164\162",
+"\162\145\146", "\166\141\154", "\162\145\141\144\157\156\154\171",
+"\166\157\154\141\164\151\154\145", "\164\162\141\156\163\151\145\156\164",
+"\165\156\163\145\164\164\141\142\154\145", "\144\145\162\151\166\145\144", "\165\156\151\161\165\145",
+"\157\162\144\145\162\145\144", "\162\145\163\157\154\166\145", "\151\144", "\164\162\165\145",
+"\146\141\154\163\145", "\157\160", "\166\157\151\144", "\144\141\164\141\164\171\160\145",
+"\145\156\165\155", "\155\141\160\145\156\164\162\171", "\164\150\162\157\167\163", null, null,
+null, null, "\173", "\175", "\133", "\135", "\50", "\51", "\56", "\54", "\72",
+"\73", "\52", "\53", "\55", "\75", "\77", "\41", "\44", "\43", "\100", "\56\56",
+"\55\76", "\76\74", "\74\76", "\46", "\74", "\76", null, null, null, null, null, null,
 null, null, null, };
 
 /** Lexer state names. */
@@ -954,18 +954,18 @@ public static final String[] lexStateNames = {
 
 /** Lex State array. */
 public static final int[] jjnewLexState = {
-   -1, -1, -1, 1, 0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 
-   -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 
-   -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 
+   -1, -1, -1, 1, 0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+   -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+   -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
 };
 static final long[] jjtoToken = {
-   0xffffffe1ffffffc1L, 0x89L, 
+   0xffffffe1ffffffc1L, 0x89L,
 };
 static final long[] jjtoSkip = {
-   0x1eL, 0x0L, 
+   0x1eL, 0x0L,
 };
 static final long[] jjtoMore = {
-   0x20L, 0x0L, 
+   0x20L, 0x0L,
 };
 protected SimpleCharStream input_stream;
 private final int[] jjrounds = new int[27];
@@ -1048,7 +1048,7 @@ int jjmatchedPos;
 int jjmatchedKind;
 
 /** Get the next Token. */
-public Token getNextToken() 
+public Token getNextToken()
 {
   Token matchedToken;
   int curPos = 0;

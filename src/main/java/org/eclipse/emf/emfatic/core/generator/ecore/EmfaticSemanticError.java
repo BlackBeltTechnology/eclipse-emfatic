@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
@@ -20,13 +20,13 @@ package org.eclipse.emf.emfatic.core.generator.ecore;
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
  * http://www.eclipse.org/legal/epl-2.0.
- * 
+ *
  * This Source Code may also be made available under the following Secondary
  * Licenses when the conditions for such availability set forth in the Eclipse
  * Public License, v. 2.0 are satisfied: GNU General Public License, version 2
  * with the GNU Classpath Exception which is
  * available at https://www.gnu.org/software/classpath/license.html.
- * 
+ *
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  * #L%
  */
@@ -39,7 +39,7 @@ import org.eclipse.gymnast.runtime.core.parser.ParseError;
 public abstract class EmfaticSemanticError extends ParseError
 {
     public static class DuplicateTypeVariableName extends EmfaticSemanticError {
-    	DuplicateTypeVariableName(EmfaticTokenNode nameTokenNode)
+        DuplicateTypeVariableName(EmfaticTokenNode nameTokenNode)
         {
             String nameText = TokenText.Get(nameTokenNode);
             String message = "Duplicate type variable name: " + nameText;
@@ -47,9 +47,9 @@ public abstract class EmfaticSemanticError extends ParseError
             int rangeLength = nameTokenNode.getRangeLength();
             init(message, rangeStart, rangeLength);
         }
-	}
+    }
 
-	public static class ImportNotFound extends EmfaticSemanticError
+    public static class ImportNotFound extends EmfaticSemanticError
     {
 
         ImportNotFound(ImportStmt importStmt)

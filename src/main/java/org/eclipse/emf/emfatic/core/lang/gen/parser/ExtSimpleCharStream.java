@@ -13,49 +13,49 @@ package org.eclipse.emf.emfatic.core.lang.gen.parser;
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
  * http://www.eclipse.org/legal/epl-2.0.
- * 
+ *
  * This Source Code may also be made available under the following Secondary
  * Licenses when the conditions for such availability set forth in the Eclipse
  * Public License, v. 2.0 are satisfied: GNU General Public License, version 2
  * with the GNU Classpath Exception which is
  * available at https://www.gnu.org/software/classpath/license.html.
- * 
+ *
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  * #L%
  */
 
 public class ExtSimpleCharStream extends SimpleCharStream {
 
-	/**
-	 * The current character position in the input stream.
-	 */
-	public int inputOffset = -1;
-	
-	/**
-	 * The start position of the current token in the input stream.
-	 */
-	public int tokenBeginOffset;
-	
-	
-	public ExtSimpleCharStream(java.io.Reader dstream) {
-		super(dstream);
-	}
-	
-	public char BeginToken() throws java.io.IOException {
-		tokenBegin = -1;
-		tokenBeginOffset = -1;
-		
-		char c = readChar();
-		
-		tokenBegin = bufpos;
-		tokenBeginOffset = inputOffset;
+    /**
+     * The current character position in the input stream.
+     */
+    public int inputOffset = -1;
 
-		return c;
-	}
-	
-	protected void UpdateLineColumn(char c) {
-		inputOffset++;
-		super.UpdateLineColumn(c);
-	}
-	
+    /**
+     * The start position of the current token in the input stream.
+     */
+    public int tokenBeginOffset;
+
+
+    public ExtSimpleCharStream(java.io.Reader dstream) {
+        super(dstream);
+    }
+
+    public char BeginToken() throws java.io.IOException {
+        tokenBegin = -1;
+        tokenBeginOffset = -1;
+
+        char c = readChar();
+
+        tokenBegin = bufpos;
+        tokenBeginOffset = inputOffset;
+
+        return c;
+    }
+
+    protected void UpdateLineColumn(char c) {
+        inputOffset++;
+        super.UpdateLineColumn(c);
+    }
+
 }

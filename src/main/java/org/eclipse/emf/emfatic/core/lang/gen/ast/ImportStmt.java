@@ -9,13 +9,13 @@ package org.eclipse.emf.emfatic.core.lang.gen.ast;
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
  * http://www.eclipse.org/legal/epl-2.0.
- * 
+ *
  * This Source Code may also be made available under the following Secondary
  * Licenses when the conditions for such availability set forth in the Eclipse
  * Public License, v. 2.0 are satisfied: GNU General Public License, version 2
  * with the GNU Classpath Exception which is
  * available at https://www.gnu.org/software/classpath/license.html.
- * 
+ *
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  * #L%
  */
@@ -29,111 +29,111 @@ import org.eclipse.gymnast.runtime.core.ast.TokenInfo;
  */
 public class ImportStmt extends EmfaticASTNode  {
 
-	public static final String KW_IMPORT = "import";
+    public static final String KW_IMPORT = "import";
 
-	private EmfaticTokenNode _import_KW;
-	private EmfaticTokenNode _alias;
-	private EmfaticTokenNode _equals;
-	private StringLiteralOrQualifiedID _uri;
-	private EmfaticTokenNode _semi;
+    private EmfaticTokenNode _import_KW;
+    private EmfaticTokenNode _alias;
+    private EmfaticTokenNode _equals;
+    private StringLiteralOrQualifiedID _uri;
+    private EmfaticTokenNode _semi;
 
-	public EmfaticTokenNode getImport_KW() {
-		return _import_KW;
-	}
-	public EmfaticTokenNode getAlias() {
-		return _alias;
-	}
-	public EmfaticTokenNode getEquals() {
-		return _equals;
-	}
-	public StringLiteralOrQualifiedID getUri() {
-		return _uri;
-	}
-	public EmfaticTokenNode getSemi() {
-		return _semi;
-	}
+    public EmfaticTokenNode getImport_KW() {
+        return _import_KW;
+    }
+    public EmfaticTokenNode getAlias() {
+        return _alias;
+    }
+    public EmfaticTokenNode getEquals() {
+        return _equals;
+    }
+    public StringLiteralOrQualifiedID getUri() {
+        return _uri;
+    }
+    public EmfaticTokenNode getSemi() {
+        return _semi;
+    }
 
 
-	/**
-	 * @return the number of children of this ASTNode
-	 */
-	public int getChildCount() {
-		int count = 0;
-		if (_import_KW != null) count++;
-		if (_alias != null) count++;
-		if (_equals != null) count++;
-		if (_uri != null) count++;
-		if (_semi != null) count++;
+    /**
+     * @return the number of children of this ASTNode
+     */
+    public int getChildCount() {
+        int count = 0;
+        if (_import_KW != null) count++;
+        if (_alias != null) count++;
+        if (_equals != null) count++;
+        if (_uri != null) count++;
+        if (_semi != null) count++;
 
-		return count;
-	}
+        return count;
+    }
 
-	/**
-	 * @param index the index of a child ASTNode to get
-	 * @return the child ASTNode at the given index
-	 * @throws IndexOutOfBoundsException when the index is out of bounds
-	 */
-	public ASTNode getChild(int index) {
-		int count = -1;
-		if ((_import_KW != null) && (++count == index)) return _import_KW;
-		if ((_alias != null) && (++count == index)) return _alias;
-		if ((_equals != null) && (++count == index)) return _equals;
-		if ((_uri != null) && (++count == index)) return _uri;
-		if ((_semi != null) && (++count == index)) return _semi;
+    /**
+     * @param index the index of a child ASTNode to get
+     * @return the child ASTNode at the given index
+     * @throws IndexOutOfBoundsException when the index is out of bounds
+     */
+    public ASTNode getChild(int index) {
+        int count = -1;
+        if ((_import_KW != null) && (++count == index)) return _import_KW;
+        if ((_alias != null) && (++count == index)) return _alias;
+        if ((_equals != null) && (++count == index)) return _equals;
+        if ((_uri != null) && (++count == index)) return _uri;
+        if ((_semi != null) && (++count == index)) return _semi;
 
-		throw new IndexOutOfBoundsException();
-	}
-	
-	/**
-	 * Construct a new ImportStmt.
-	 */
-	public ImportStmt(
-		TokenInfo import_KW,
-		TokenInfo alias,
-		TokenInfo equals,
-		StringLiteralOrQualifiedID uri,
-		TokenInfo semi
-	) {
-		super();
+        throw new IndexOutOfBoundsException();
+    }
 
-		if (import_KW != null) {
-			_import_KW = new EmfaticTokenNode(import_KW);
-			if (_import_KW._parent != null) throw new RuntimeException();
-			_import_KW._parent = this;
-		}
-		if (alias != null) {
-			_alias = new EmfaticTokenNode(alias);
-			if (_alias._parent != null) throw new RuntimeException();
-			_alias._parent = this;
-		}
-		if (equals != null) {
-			_equals = new EmfaticTokenNode(equals);
-			if (_equals._parent != null) throw new RuntimeException();
-			_equals._parent = this;
-		}
-		if (uri != null) {
-			_uri = uri;
-			if (_uri._parent != null) throw new RuntimeException();
-			_uri._parent = this;
-		}
-		if (semi != null) {
-			_semi = new EmfaticTokenNode(semi);
-			if (_semi._parent != null) throw new RuntimeException();
-			_semi._parent = this;
-		}
+    /**
+     * Construct a new ImportStmt.
+     */
+    public ImportStmt(
+        TokenInfo import_KW,
+        TokenInfo alias,
+        TokenInfo equals,
+        StringLiteralOrQualifiedID uri,
+        TokenInfo semi
+    ) {
+        super();
 
-	}
+        if (import_KW != null) {
+            _import_KW = new EmfaticTokenNode(import_KW);
+            if (_import_KW._parent != null) throw new RuntimeException();
+            _import_KW._parent = this;
+        }
+        if (alias != null) {
+            _alias = new EmfaticTokenNode(alias);
+            if (_alias._parent != null) throw new RuntimeException();
+            _alias._parent = this;
+        }
+        if (equals != null) {
+            _equals = new EmfaticTokenNode(equals);
+            if (_equals._parent != null) throw new RuntimeException();
+            _equals._parent = this;
+        }
+        if (uri != null) {
+            _uri = uri;
+            if (_uri._parent != null) throw new RuntimeException();
+            _uri._parent = this;
+        }
+        if (semi != null) {
+            _semi = new EmfaticTokenNode(semi);
+            if (_semi._parent != null) throw new RuntimeException();
+            _semi._parent = this;
+        }
 
-	/**
-	 * This method overrides the superclass <code>acceptImpl</code> providing
-	 * the same implementation.  Here <code>this</code> refers to this specific node
-	 * class, so the <code>beginVisit</code> and <code>endVisit</code> methods
-	 * specific to this type in the visitor will be invoked.
-	 */
-	public void acceptImpl(EmfaticASTNodeVisitor visitor) {
-		boolean visitChildren = visitor.beginVisit(this);
-		if (visitChildren) visitChildren(visitor);
-		visitor.endVisit(this);
-	}
+    }
+
+    /**
+     * This method overrides the superclass <code>acceptImpl</code> providing
+     * the same implementation.  Here <code>this</code> refers to this specific node
+     * class, so the <code>beginVisit</code> and <code>endVisit</code> methods
+     * specific to this type in the visitor will be invoked.
+     */
+    public void acceptImpl(EmfaticASTNodeVisitor visitor) {
+        boolean visitChildren = visitor.beginVisit(this);
+        if (visitChildren) visitChildren(visitor);
+        visitor.endVisit(this);
+    }
 
 }

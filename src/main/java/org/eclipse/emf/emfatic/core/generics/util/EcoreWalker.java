@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *     Miguel Garcia (Tech Univ Hamburg-Harburg) - customization for EMF Generics
  *******************************************************************************/
@@ -20,13 +20,13 @@ package org.eclipse.emf.emfatic.core.generics.util;
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
  * http://www.eclipse.org/legal/epl-2.0.
- * 
+ *
  * This Source Code may also be made available under the following Secondary
  * Licenses when the conditions for such availability set forth in the Eclipse
  * Public License, v. 2.0 are satisfied: GNU General Public License, version 2
  * with the GNU Classpath Exception which is
  * available at https://www.gnu.org/software/classpath/license.html.
- * 
+ *
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  * #L%
  */
@@ -64,94 +64,94 @@ import org.eclipse.emf.ecore.util.EcoreSwitch;
  * MyVisitor v = new MyVisitor (); <br>
  * EcoreWalker w = new EcoreWalker(); <br>
  * Object result = w.walk(eP, v); <br>
- * 
+ *
  * @see EcoreSwitch
  */
 public class EcoreWalker {
 
-	/**
-	 * Navigates the complete AST and ensures that each node is visited by
-	 * <code>visitor</code>.
-	 * 
-	 * @param eME
-	 *            the EModelElement to be visited
-	 * @param visitor
-	 *            the visitor that should visit the expression
-	 * @return
-	 */
-	public EcoreSwitch<?> walk(EModelElement eME, EcoreSwitch<?> v) {
-		v.doSwitch(eME);
-		visitOwnedParts(eME, v);
-		return v;
-	}
+    /**
+     * Navigates the complete AST and ensures that each node is visited by
+     * <code>visitor</code>.
+     *
+     * @param eME
+     *            the EModelElement to be visited
+     * @param visitor
+     *            the visitor that should visit the expression
+     * @return
+     */
+    public EcoreSwitch<?> walk(EModelElement eME, EcoreSwitch<?> v) {
+        v.doSwitch(eME);
+        visitOwnedParts(eME, v);
+        return v;
+    }
 
-	private EcoreSwitch<?> visitOwnedParts(EModelElement e, EcoreSwitch<?> v) {
-		// the annotations
-		for (Object oa : e.getEAnnotations()) {
-			EAnnotation a = (EAnnotation) oa;
-			walk(a, v);
-			// don't return yet
-		}
-		// EPackage
-		if (e instanceof EPackage) {
-			EPackage eP = (EPackage) e;
-			// visit owned parts and only then return
-			// i.e. visit owned classifiers and visit subpackages
-			for (Object oC : eP.getEClassifiers()) {
-				EClassifier c = (EClassifier) oC;
-				walk(c, v);
-			}
-			for (Object osubP : eP.getESubpackages()) {
-				EPackage subP = (EPackage) osubP;
-				walk(subP, v);
-			}
-			return v;
-		}
-		// EClassifier can be EClass or EDataType (EDataType in turn can be
-		// EEnum)
-		if (e instanceof EClass) {
-			EClass eC = (EClass) e;
-			// visit the owned attributes
-			for (Object oA : eC.getEAttributes()) {
-				EAttribute a = (EAttribute) oA;
-				// an attribute has no owned parts, therefore don't walk it
-				v.doSwitch(a);
-			}
-			// visit the owned references
-			for (Object oR : eC.getEReferences()) {
-				EReference r = (EReference) oR;
-				v.doSwitch(r);
-			}
-			// visit the owned operations
-			for (Object oO : eC.getEOperations()) {
-				EOperation o = (EOperation) oO;
-				v.doSwitch(o);
-				// visit the owned formal parameters
-				for (Object op : o.getEParameters()) {
-					EParameter p = (EParameter) op;
-					v.doSwitch(p);
-				}
-			}
-			return v;
-		}
-		if (e instanceof EDataType) {
-			// handle EEnum
-			if (e instanceof EEnum) {
-				EEnum ee = (EEnum) e;
-				// the enum itself was already visited by virtue of it being an
-				// EClassifier
-				for (Object eL : ee.getELiterals()) {
-					EEnumLiteral eeL = (EEnumLiteral) eL;
-					v.doSwitch(eeL);
-				}
-				return v;
-			}
-			// it's a non-EEnum EDataType
-			//EDataType eD = (EDataType) e;
-			// the datatype itself was already visited by virtue of it being an
-			// EClassifier
-			return v;
-		}
-		return v;
-	}
+    private EcoreSwitch<?> visitOwnedParts(EModelElement e, EcoreSwitch<?> v) {
+        // the annotations
+        for (Object oa : e.getEAnnotations()) {
+            EAnnotation a = (EAnnotation) oa;
+            walk(a, v);
+            // don't return yet
+        }
+        // EPackage
+        if (e instanceof EPackage) {
+            EPackage eP = (EPackage) e;
+            // visit owned parts and only then return
+            // i.e. visit owned classifiers and visit subpackages
+            for (Object oC : eP.getEClassifiers()) {
+                EClassifier c = (EClassifier) oC;
+                walk(c, v);
+            }
+            for (Object osubP : eP.getESubpackages()) {
+                EPackage subP = (EPackage) osubP;
+                walk(subP, v);
+            }
+            return v;
+        }
+        // EClassifier can be EClass or EDataType (EDataType in turn can be
+        // EEnum)
+        if (e instanceof EClass) {
+            EClass eC = (EClass) e;
+            // visit the owned attributes
+            for (Object oA : eC.getEAttributes()) {
+                EAttribute a = (EAttribute) oA;
+                // an attribute has no owned parts, therefore don't walk it
+                v.doSwitch(a);
+            }
+            // visit the owned references
+            for (Object oR : eC.getEReferences()) {
+                EReference r = (EReference) oR;
+                v.doSwitch(r);
+            }
+            // visit the owned operations
+            for (Object oO : eC.getEOperations()) {
+                EOperation o = (EOperation) oO;
+                v.doSwitch(o);
+                // visit the owned formal parameters
+                for (Object op : o.getEParameters()) {
+                    EParameter p = (EParameter) op;
+                    v.doSwitch(p);
+                }
+            }
+            return v;
+        }
+        if (e instanceof EDataType) {
+            // handle EEnum
+            if (e instanceof EEnum) {
+                EEnum ee = (EEnum) e;
+                // the enum itself was already visited by virtue of it being an
+                // EClassifier
+                for (Object eL : ee.getELiterals()) {
+                    EEnumLiteral eeL = (EEnumLiteral) eL;
+                    v.doSwitch(eeL);
+                }
+                return v;
+            }
+            // it's a non-EEnum EDataType
+            //EDataType eD = (EDataType) e;
+            // the datatype itself was already visited by virtue of it being an
+            // EClassifier
+            return v;
+        }
+        return v;
+    }
 }

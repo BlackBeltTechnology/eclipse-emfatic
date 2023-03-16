@@ -13,37 +13,37 @@ package org.eclipse.emf.emfatic.core.lang.gen.parser;
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
  * http://www.eclipse.org/legal/epl-2.0.
- * 
+ *
  * This Source Code may also be made available under the following Secondary
  * Licenses when the conditions for such availability set forth in the Eclipse
  * Public License, v. 2.0 are satisfied: GNU General Public License, version 2
  * with the GNU Classpath Exception which is
  * available at https://www.gnu.org/software/classpath/license.html.
- * 
+ *
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  * #L%
  */
 
 public class ExtEmfaticParserTokenManager extends EmfaticParserTokenManager {
 
-	private final ExtSimpleCharStream _stream;
-	
-	public ExtEmfaticParserTokenManager(ExtSimpleCharStream stream) {
-		super(stream);
-		_stream = stream;
-	}
+    private final ExtSimpleCharStream _stream;
 
-	protected Token jjFillToken() {
-		ExtToken t = new ExtToken();
-		t.kind = jjmatchedKind;
-		String im = jjstrLiteralImages[jjmatchedKind];
-		t.image = (im == null) ? input_stream.GetImage() : im;
-		t.beginLine = input_stream.getBeginLine();
-		t.beginColumn = input_stream.getBeginColumn();
-		t.endLine = input_stream.getEndLine();
-		t.endColumn = input_stream.getEndColumn();
-		t.tokenOffset = _stream.tokenBeginOffset;
-		return t;
-	}
+    public ExtEmfaticParserTokenManager(ExtSimpleCharStream stream) {
+        super(stream);
+        _stream = stream;
+    }
+
+    protected Token jjFillToken() {
+        ExtToken t = new ExtToken();
+        t.kind = jjmatchedKind;
+        String im = jjstrLiteralImages[jjmatchedKind];
+        t.image = (im == null) ? input_stream.GetImage() : im;
+        t.beginLine = input_stream.getBeginLine();
+        t.beginColumn = input_stream.getBeginColumn();
+        t.endLine = input_stream.getEndLine();
+        t.endColumn = input_stream.getEndColumn();
+        t.tokenOffset = _stream.tokenBeginOffset;
+        return t;
+    }
 
 }

@@ -13,13 +13,13 @@ package org.eclipse.emf.emfatic.core.lang.gen.parser;
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
  * http://www.eclipse.org/legal/epl-2.0.
- * 
+ *
  * This Source Code may also be made available under the following Secondary
  * Licenses when the conditions for such availability set forth in the Eclipse
  * Public License, v. 2.0 are satisfied: GNU General Public License, version 2
  * with the GNU Classpath Exception which is
  * available at https://www.gnu.org/software/classpath/license.html.
- * 
+ *
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  * #L%
  */
@@ -49,116 +49,116 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class EmfaticParserDriver implements IParser {
-	
-	protected URI uri = null;
-	
-	public EmfaticParserDriver(URI uri) {
-		this.uri = uri;
-	}
-	
-    public ParseContext parse(Reader input) {
-    	
-    	ExtSimpleCharStream stream = new ExtSimpleCharStream(input);
-    	ExtEmfaticParserTokenManager tokenManager = new ExtEmfaticParserTokenManager(stream);
-    	EmfaticParser parser = new EmfaticParser(tokenManager);
-    	ParseContext parseContext = new ParseContext();
-    	CompUnit compUnit = parseCompUnit(parser, parseContext);
-    	if (compUnit != null) {
-			EPackage rootPackage = addErrorsFromAST(parseContext);
-			// for consumption by change listeners (notified by the editor)
-			compUnit.setAST(rootPackage);
-		}
-		
-		return parseContext;
+
+    protected URI uri = null;
+
+    public EmfaticParserDriver(URI uri) {
+        this.uri = uri;
     }
-    
-    	private EPackage addErrorsFromAST(ParseContext parseContext) {
-		EPackage rootPackage = null;
-		// warnigns and errors computed not from the CST but from the AST
-		Builder builder = new Builder();
-		ResourceSet resourceSet = new ResourceSetImpl();
-		
-		if (Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().get("ecore") == null) {
-			resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("*", new XMIResourceFactoryImpl());
-		}
-		Resource resource = resourceSet.createResource(uri);
-		try {
-			builder.build(parseContext, resource);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		if (!parseContext.hasErrors()) {
-			Connector connector = new Connector(builder);
-			connector.connect(parseContext, resource);
-			rootPackage = (EPackage) resource.getContents().get(0);
-			if (rootPackage != null) {
-				try {
-					// invoke EcoreValidator
-					Diagnostician diagnostician = new Diagnostician();
-					final Diagnostic diagnostic = diagnostician.validate(rootPackage);
-					if (diagnostic.getSeverity() == Diagnostic.OK) {
-						return rootPackage;
-					}
-					/*
-					 * A tutorial on markers:
-					 * 
-					 * http://www.eclipse.org/articles/Article-Mark%20My%20Words/mark-my-words.html
-					 * 
-					 */
-	
-					CompUnit compUnit = (CompUnit) parseContext.getParseRoot();
-					for (Diagnostic childDiagnostic : diagnostic.getChildren()) {
-						Set<ASTNode> problemNodes = new HashSet<ASTNode>();
-						String dMsg = childDiagnostic.getMessage();
-						if (childDiagnostic.getData().size() > 0) {
-							Object primarySourceOfProblem = childDiagnostic.getData().get(0);
-							if (primarySourceOfProblem != null && primarySourceOfProblem instanceof EObject) {
-								Set<ASTNode> cstUses = compUnit.getEcoreDecl2CstUse().get((EObject) primarySourceOfProblem);
-								problemNodes.addAll(cstUses);
-								if (problemNodes.size() == 0) {
-									problemNodes.add(compUnit.getPackageDecl());
-								}
-							}
-						}
-						for (ASTNode problemNode : problemNodes) {
-							ParseMessage pMsg = new EmfaticSemanticWarning.EcoreValidatorDiagnostic(problemNode, dMsg);
-							parseContext.addParseMessage(pMsg);
-						}
-					}
-				}
-				catch (Exception ex) {
-					return rootPackage;
-				}
-			}
-		}
-		return rootPackage;
-	}
-    
+
+    public ParseContext parse(Reader input) {
+
+        ExtSimpleCharStream stream = new ExtSimpleCharStream(input);
+        ExtEmfaticParserTokenManager tokenManager = new ExtEmfaticParserTokenManager(stream);
+        EmfaticParser parser = new EmfaticParser(tokenManager);
+        ParseContext parseContext = new ParseContext();
+        CompUnit compUnit = parseCompUnit(parser, parseContext);
+        if (compUnit != null) {
+            EPackage rootPackage = addErrorsFromAST(parseContext);
+            // for consumption by change listeners (notified by the editor)
+            compUnit.setAST(rootPackage);
+        }
+
+        return parseContext;
+    }
+
+        private EPackage addErrorsFromAST(ParseContext parseContext) {
+        EPackage rootPackage = null;
+        // warnigns and errors computed not from the CST but from the AST
+        Builder builder = new Builder();
+        ResourceSet resourceSet = new ResourceSetImpl();
+
+        if (Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().get("ecore") == null) {
+            resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("*", new XMIResourceFactoryImpl());
+        }
+        Resource resource = resourceSet.createResource(uri);
+        try {
+            builder.build(parseContext, resource);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        if (!parseContext.hasErrors()) {
+            Connector connector = new Connector(builder);
+            connector.connect(parseContext, resource);
+            rootPackage = (EPackage) resource.getContents().get(0);
+            if (rootPackage != null) {
+                try {
+                    // invoke EcoreValidator
+                    Diagnostician diagnostician = new Diagnostician();
+                    final Diagnostic diagnostic = diagnostician.validate(rootPackage);
+                    if (diagnostic.getSeverity() == Diagnostic.OK) {
+                        return rootPackage;
+                    }
+                    /*
+                     * A tutorial on markers:
+                     *
+                     * http://www.eclipse.org/articles/Article-Mark%20My%20Words/mark-my-words.html
+                     *
+                     */
+
+                    CompUnit compUnit = (CompUnit) parseContext.getParseRoot();
+                    for (Diagnostic childDiagnostic : diagnostic.getChildren()) {
+                        Set<ASTNode> problemNodes = new HashSet<ASTNode>();
+                        String dMsg = childDiagnostic.getMessage();
+                        if (childDiagnostic.getData().size() > 0) {
+                            Object primarySourceOfProblem = childDiagnostic.getData().get(0);
+                            if (primarySourceOfProblem != null && primarySourceOfProblem instanceof EObject) {
+                                Set<ASTNode> cstUses = compUnit.getEcoreDecl2CstUse().get((EObject) primarySourceOfProblem);
+                                problemNodes.addAll(cstUses);
+                                if (problemNodes.size() == 0) {
+                                    problemNodes.add(compUnit.getPackageDecl());
+                                }
+                            }
+                        }
+                        for (ASTNode problemNode : problemNodes) {
+                            ParseMessage pMsg = new EmfaticSemanticWarning.EcoreValidatorDiagnostic(problemNode, dMsg);
+                            parseContext.addParseMessage(pMsg);
+                        }
+                    }
+                }
+                catch (Exception ex) {
+                    return rootPackage;
+                }
+            }
+        }
+        return rootPackage;
+    }
+
     private CompUnit parseCompUnit(EmfaticParser parser, ParseContext parseContext) {
-    	try {
-			CompUnit compUnit = parser.compUnit();
-			parseContext.setParseRoot(compUnit);
-			return compUnit;
-		} catch (ParseException ex) {
-			ParseError parseError;
-			Token token = ex.currentToken;
-			if (token instanceof ExtToken) {
-				ExtToken extToken = (ExtToken) token;
-				int offset = extToken.tokenOffset;
-				String tokenText = token.image;
-				int length = (tokenText == null) ? 0 : tokenText.length();
-				parseError = new ParseError(ex.getMessage(), offset, length);
-			}
-			else {
-				parseError = new ParseError(ex.getMessage(), 1);
-			}
-			parseContext.addParseMessage(parseError);
-		}
-		catch (TokenMgrError ex) {
-			ParseError parseError = new ParseError(ex.getMessage(), 1);
-			parseContext.addParseMessage(parseError);
-		}
-		return null; 
+        try {
+            CompUnit compUnit = parser.compUnit();
+            parseContext.setParseRoot(compUnit);
+            return compUnit;
+        } catch (ParseException ex) {
+            ParseError parseError;
+            Token token = ex.currentToken;
+            if (token instanceof ExtToken) {
+                ExtToken extToken = (ExtToken) token;
+                int offset = extToken.tokenOffset;
+                String tokenText = token.image;
+                int length = (tokenText == null) ? 0 : tokenText.length();
+                parseError = new ParseError(ex.getMessage(), offset, length);
+            }
+            else {
+                parseError = new ParseError(ex.getMessage(), 1);
+            }
+            parseContext.addParseMessage(parseError);
+        }
+        catch (TokenMgrError ex) {
+            ParseError parseError = new ParseError(ex.getMessage(), 1);
+            parseContext.addParseMessage(parseError);
+        }
+        return null;
     }
 
 }

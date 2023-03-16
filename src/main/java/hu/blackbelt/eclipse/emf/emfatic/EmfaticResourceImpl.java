@@ -9,13 +9,13 @@ package hu.blackbelt.eclipse.emf.emfatic;
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
  * http://www.eclipse.org/legal/epl-2.0.
- * 
+ *
  * This Source Code may also be made available under the following Secondary
  * Licenses when the conditions for such availability set forth in the Eclipse
  * Public License, v. 2.0 are satisfied: GNU General Public License, version 2
  * with the GNU Classpath Exception which is
  * available at https://www.gnu.org/software/classpath/license.html.
- * 
+ *
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  * #L%
  */
@@ -33,63 +33,63 @@ import java.io.InputStreamReader;
 import java.util.Map;
 
 public class EmfaticResourceImpl extends ResourceImpl  {
-	
-	public EmfaticResourceImpl() {
-	}
 
-	public EmfaticResourceImpl(URI uri) {
-		this();
-		this.uri = uri;
-	}
+    public EmfaticResourceImpl() {
+    }
 
-	@Override
-	protected void doLoad(InputStream inputStream, Map<?, ?> options) throws IOException {
-		BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-		EmfaticParserDriver parser = new EmfaticParserDriver(getURI());
-		ParseContext parseContext = parser.parse(reader);
-		Builder builder = new Builder();
-		builder.build(parseContext, this);
+    public EmfaticResourceImpl(URI uri) {
+        this();
+        this.uri = uri;
+    }
 
-		if (parseContext.getErrorCount() > 0) {
-			String message = parseContext.getMessages()[0].getMessage();
-			message = message.replaceAll("\\r|\\n", " ");
-			message = message.trim();
-			throw new IOException("Syntax error: " + message);
-		}
-	}
+    @Override
+    protected void doLoad(InputStream inputStream, Map<?, ?> options) throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+        EmfaticParserDriver parser = new EmfaticParserDriver(getURI());
+        ParseContext parseContext = parser.parse(reader);
+        Builder builder = new Builder();
+        builder.build(parseContext, this);
 
-	/*
-	public Resource loadEmfatic(ResourceSet resourceSet, URI emfaticUri, URI ecoreUri, boolean writeEcore) throws Exception {
-		Resource resource = resourceSet.createResource(ecoreUri);
+        if (parseContext.getErrorCount() > 0) {
+            String message = parseContext.getMessages()[0].getMessage();
+            message = message.replaceAll("\\r|\\n", " ");
+            message = message.trim();
+            throw new IOException("Syntax error: " + message);
+        }
+    }
 
-		InputStream inputStream = null;
-		for (URIHandler uriHandler : resourceSet.getURIConverter().getURIHandlers()) {
-			if (uriHandler.canHandle(emfaticUri)) {
-				inputStream = uriHandler.createInputStream(emfaticUri, ImmutableMap.of());
-			}
-		}
+    /*
+    public Resource loadEmfatic(ResourceSet resourceSet, URI emfaticUri, URI ecoreUri, boolean writeEcore) throws Exception {
+        Resource resource = resourceSet.createResource(ecoreUri);
 
-		if (inputStream == null) {
-			throw new Exception("Could not load from URI: " + emfaticUri);
-		}
+        InputStream inputStream = null;
+        for (URIHandler uriHandler : resourceSet.getURIConverter().getURIHandlers()) {
+            if (uriHandler.canHandle(emfaticUri)) {
+                inputStream = uriHandler.createInputStream(emfaticUri, ImmutableMap.of());
+            }
+        }
 
-		NullProgressMonitor monitor = new NullProgressMonitor();
-		BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-		EmfaticParserDriver parser = new EmfaticParserDriver(emfaticUri);
-		ParseContext parseContext = parser.parse(reader);
-		Builder builder = new Builder();
-		builder.build(parseContext, resource, monitor);
+        if (inputStream == null) {
+            throw new Exception("Could not load from URI: " + emfaticUri);
+        }
 
-		if (!parseContext.hasErrors() && writeEcore) {
-			Connector connector = new Connector(builder);
-			connector.connect(parseContext, resource, monitor);
-			resource.save(null);
-		} else {
-			String message = parseContext.getMessages()[0].getMessage();
-			message = message.replaceAll("\\r|\\n", " ");
-			message = message.trim();
-			throw new Exception("Syntax error: " + message);
-		}
-	} */
-	
+        NullProgressMonitor monitor = new NullProgressMonitor();
+        BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+        EmfaticParserDriver parser = new EmfaticParserDriver(emfaticUri);
+        ParseContext parseContext = parser.parse(reader);
+        Builder builder = new Builder();
+        builder.build(parseContext, resource, monitor);
+
+        if (!parseContext.hasErrors() && writeEcore) {
+            Connector connector = new Connector(builder);
+            connector.connect(parseContext, resource, monitor);
+            resource.save(null);
+        } else {
+            String message = parseContext.getMessages()[0].getMessage();
+            message = message.replaceAll("\\r|\\n", " ");
+            message = message.trim();
+            throw new Exception("Syntax error: " + message);
+        }
+    } */
+
 }

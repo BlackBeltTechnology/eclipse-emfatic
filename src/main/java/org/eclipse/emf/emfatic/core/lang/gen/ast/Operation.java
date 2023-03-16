@@ -9,13 +9,13 @@ package org.eclipse.emf.emfatic.core.lang.gen.ast;
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
  * http://www.eclipse.org/legal/epl-2.0.
- * 
+ *
  * This Source Code may also be made available under the following Secondary
  * Licenses when the conditions for such availability set forth in the Eclipse
  * Public License, v. 2.0 are satisfied: GNU General Public License, version 2
  * with the GNU Classpath Exception which is
  * available at https://www.gnu.org/software/classpath/license.html.
- * 
+ *
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  * #L%
  */
@@ -29,196 +29,196 @@ import org.eclipse.gymnast.runtime.core.ast.TokenInfo;
  */
 public class Operation extends ClassMemberDecl  {
 
-	public static final String KW_OP = "op";
-	public static final String KW_THROWS = "throws";
+    public static final String KW_OP = "op";
+    public static final String KW_THROWS = "throws";
 
-	private Annotations _annotations;
-	private Modifiers _modifiers;
-	private EmfaticTokenNode _op_KW;
-	private TypeParamsInfo _typeParamsInfo;
-	private ResultType _resType;
-	private EmfaticTokenNode _name;
-	private EmfaticTokenNode _lparen;
-	private Params _params;
-	private EmfaticTokenNode _rparen;
-	private EmfaticTokenNode _throws_KW;
-	private CommaListBoundExceptWild _exceptions;
-	private EmfaticTokenNode _semi;
+    private Annotations _annotations;
+    private Modifiers _modifiers;
+    private EmfaticTokenNode _op_KW;
+    private TypeParamsInfo _typeParamsInfo;
+    private ResultType _resType;
+    private EmfaticTokenNode _name;
+    private EmfaticTokenNode _lparen;
+    private Params _params;
+    private EmfaticTokenNode _rparen;
+    private EmfaticTokenNode _throws_KW;
+    private CommaListBoundExceptWild _exceptions;
+    private EmfaticTokenNode _semi;
 
-	public Annotations getAnnotations() {
-		return _annotations;
-	}
-	public Modifiers getModifiers() {
-		return _modifiers;
-	}
-	public EmfaticTokenNode getOp_KW() {
-		return _op_KW;
-	}
-	public TypeParamsInfo getTypeParamsInfo() {
-		return _typeParamsInfo;
-	}
-	public ResultType getResType() {
-		return _resType;
-	}
-	public EmfaticTokenNode getName() {
-		return _name;
-	}
-	public EmfaticTokenNode getLparen() {
-		return _lparen;
-	}
-	public Params getParams() {
-		return _params;
-	}
-	public EmfaticTokenNode getRparen() {
-		return _rparen;
-	}
-	public EmfaticTokenNode getThrows_KW() {
-		return _throws_KW;
-	}
-	public CommaListBoundExceptWild getExceptions() {
-		return _exceptions;
-	}
-	public EmfaticTokenNode getSemi() {
-		return _semi;
-	}
+    public Annotations getAnnotations() {
+        return _annotations;
+    }
+    public Modifiers getModifiers() {
+        return _modifiers;
+    }
+    public EmfaticTokenNode getOp_KW() {
+        return _op_KW;
+    }
+    public TypeParamsInfo getTypeParamsInfo() {
+        return _typeParamsInfo;
+    }
+    public ResultType getResType() {
+        return _resType;
+    }
+    public EmfaticTokenNode getName() {
+        return _name;
+    }
+    public EmfaticTokenNode getLparen() {
+        return _lparen;
+    }
+    public Params getParams() {
+        return _params;
+    }
+    public EmfaticTokenNode getRparen() {
+        return _rparen;
+    }
+    public EmfaticTokenNode getThrows_KW() {
+        return _throws_KW;
+    }
+    public CommaListBoundExceptWild getExceptions() {
+        return _exceptions;
+    }
+    public EmfaticTokenNode getSemi() {
+        return _semi;
+    }
 
 
-	/**
-	 * @return the number of children of this ASTNode
-	 */
-	public int getChildCount() {
-		int count = 0;
-		if (_annotations != null) count++;
-		if (_modifiers != null) count++;
-		if (_op_KW != null) count++;
-		if (_typeParamsInfo != null) count++;
-		if (_resType != null) count++;
-		if (_name != null) count++;
-		if (_lparen != null) count++;
-		if (_params != null) count++;
-		if (_rparen != null) count++;
-		if (_throws_KW != null) count++;
-		if (_exceptions != null) count++;
-		if (_semi != null) count++;
+    /**
+     * @return the number of children of this ASTNode
+     */
+    public int getChildCount() {
+        int count = 0;
+        if (_annotations != null) count++;
+        if (_modifiers != null) count++;
+        if (_op_KW != null) count++;
+        if (_typeParamsInfo != null) count++;
+        if (_resType != null) count++;
+        if (_name != null) count++;
+        if (_lparen != null) count++;
+        if (_params != null) count++;
+        if (_rparen != null) count++;
+        if (_throws_KW != null) count++;
+        if (_exceptions != null) count++;
+        if (_semi != null) count++;
 
-		return count;
-	}
+        return count;
+    }
 
-	/**
-	 * @param index the index of a child ASTNode to get
-	 * @return the child ASTNode at the given index
-	 * @throws IndexOutOfBoundsException when the index is out of bounds
-	 */
-	public ASTNode getChild(int index) {
-		int count = -1;
-		if ((_annotations != null) && (++count == index)) return _annotations;
-		if ((_modifiers != null) && (++count == index)) return _modifiers;
-		if ((_op_KW != null) && (++count == index)) return _op_KW;
-		if ((_typeParamsInfo != null) && (++count == index)) return _typeParamsInfo;
-		if ((_resType != null) && (++count == index)) return _resType;
-		if ((_name != null) && (++count == index)) return _name;
-		if ((_lparen != null) && (++count == index)) return _lparen;
-		if ((_params != null) && (++count == index)) return _params;
-		if ((_rparen != null) && (++count == index)) return _rparen;
-		if ((_throws_KW != null) && (++count == index)) return _throws_KW;
-		if ((_exceptions != null) && (++count == index)) return _exceptions;
-		if ((_semi != null) && (++count == index)) return _semi;
+    /**
+     * @param index the index of a child ASTNode to get
+     * @return the child ASTNode at the given index
+     * @throws IndexOutOfBoundsException when the index is out of bounds
+     */
+    public ASTNode getChild(int index) {
+        int count = -1;
+        if ((_annotations != null) && (++count == index)) return _annotations;
+        if ((_modifiers != null) && (++count == index)) return _modifiers;
+        if ((_op_KW != null) && (++count == index)) return _op_KW;
+        if ((_typeParamsInfo != null) && (++count == index)) return _typeParamsInfo;
+        if ((_resType != null) && (++count == index)) return _resType;
+        if ((_name != null) && (++count == index)) return _name;
+        if ((_lparen != null) && (++count == index)) return _lparen;
+        if ((_params != null) && (++count == index)) return _params;
+        if ((_rparen != null) && (++count == index)) return _rparen;
+        if ((_throws_KW != null) && (++count == index)) return _throws_KW;
+        if ((_exceptions != null) && (++count == index)) return _exceptions;
+        if ((_semi != null) && (++count == index)) return _semi;
 
-		throw new IndexOutOfBoundsException();
-	}
-	
-	/**
-	 * Construct a new Operation.
-	 */
-	public Operation(
-		Annotations annotations,
-		Modifiers modifiers,
-		TokenInfo op_KW,
-		TypeParamsInfo typeParamsInfo,
-		ResultType resType,
-		TokenInfo name,
-		TokenInfo lparen,
-		Params params,
-		TokenInfo rparen,
-		TokenInfo throws_KW,
-		CommaListBoundExceptWild exceptions,
-		TokenInfo semi
-	) {
-		super();
+        throw new IndexOutOfBoundsException();
+    }
 
-		if (annotations != null) {
-			_annotations = annotations;
-			if (_annotations._parent != null) throw new RuntimeException();
-			_annotations._parent = this;
-		}
-		if (modifiers != null) {
-			_modifiers = modifiers;
-			if (_modifiers._parent != null) throw new RuntimeException();
-			_modifiers._parent = this;
-		}
-		if (op_KW != null) {
-			_op_KW = new EmfaticTokenNode(op_KW);
-			if (_op_KW._parent != null) throw new RuntimeException();
-			_op_KW._parent = this;
-		}
-		if (typeParamsInfo != null) {
-			_typeParamsInfo = typeParamsInfo;
-			if (_typeParamsInfo._parent != null) throw new RuntimeException();
-			_typeParamsInfo._parent = this;
-		}
-		if (resType != null) {
-			_resType = resType;
-			if (_resType._parent != null) throw new RuntimeException();
-			_resType._parent = this;
-		}
-		if (name != null) {
-			_name = new EmfaticTokenNode(name);
-			if (_name._parent != null) throw new RuntimeException();
-			_name._parent = this;
-		}
-		if (lparen != null) {
-			_lparen = new EmfaticTokenNode(lparen);
-			if (_lparen._parent != null) throw new RuntimeException();
-			_lparen._parent = this;
-		}
-		if (params != null) {
-			_params = params;
-			if (_params._parent != null) throw new RuntimeException();
-			_params._parent = this;
-		}
-		if (rparen != null) {
-			_rparen = new EmfaticTokenNode(rparen);
-			if (_rparen._parent != null) throw new RuntimeException();
-			_rparen._parent = this;
-		}
-		if (throws_KW != null) {
-			_throws_KW = new EmfaticTokenNode(throws_KW);
-			if (_throws_KW._parent != null) throw new RuntimeException();
-			_throws_KW._parent = this;
-		}
-		if (exceptions != null) {
-			_exceptions = exceptions;
-			if (_exceptions._parent != null) throw new RuntimeException();
-			_exceptions._parent = this;
-		}
-		if (semi != null) {
-			_semi = new EmfaticTokenNode(semi);
-			if (_semi._parent != null) throw new RuntimeException();
-			_semi._parent = this;
-		}
+    /**
+     * Construct a new Operation.
+     */
+    public Operation(
+        Annotations annotations,
+        Modifiers modifiers,
+        TokenInfo op_KW,
+        TypeParamsInfo typeParamsInfo,
+        ResultType resType,
+        TokenInfo name,
+        TokenInfo lparen,
+        Params params,
+        TokenInfo rparen,
+        TokenInfo throws_KW,
+        CommaListBoundExceptWild exceptions,
+        TokenInfo semi
+    ) {
+        super();
 
-	}
+        if (annotations != null) {
+            _annotations = annotations;
+            if (_annotations._parent != null) throw new RuntimeException();
+            _annotations._parent = this;
+        }
+        if (modifiers != null) {
+            _modifiers = modifiers;
+            if (_modifiers._parent != null) throw new RuntimeException();
+            _modifiers._parent = this;
+        }
+        if (op_KW != null) {
+            _op_KW = new EmfaticTokenNode(op_KW);
+            if (_op_KW._parent != null) throw new RuntimeException();
+            _op_KW._parent = this;
+        }
+        if (typeParamsInfo != null) {
+            _typeParamsInfo = typeParamsInfo;
+            if (_typeParamsInfo._parent != null) throw new RuntimeException();
+            _typeParamsInfo._parent = this;
+        }
+        if (resType != null) {
+            _resType = resType;
+            if (_resType._parent != null) throw new RuntimeException();
+            _resType._parent = this;
+        }
+        if (name != null) {
+            _name = new EmfaticTokenNode(name);
+            if (_name._parent != null) throw new RuntimeException();
+            _name._parent = this;
+        }
+        if (lparen != null) {
+            _lparen = new EmfaticTokenNode(lparen);
+            if (_lparen._parent != null) throw new RuntimeException();
+            _lparen._parent = this;
+        }
+        if (params != null) {
+            _params = params;
+            if (_params._parent != null) throw new RuntimeException();
+            _params._parent = this;
+        }
+        if (rparen != null) {
+            _rparen = new EmfaticTokenNode(rparen);
+            if (_rparen._parent != null) throw new RuntimeException();
+            _rparen._parent = this;
+        }
+        if (throws_KW != null) {
+            _throws_KW = new EmfaticTokenNode(throws_KW);
+            if (_throws_KW._parent != null) throw new RuntimeException();
+            _throws_KW._parent = this;
+        }
+        if (exceptions != null) {
+            _exceptions = exceptions;
+            if (_exceptions._parent != null) throw new RuntimeException();
+            _exceptions._parent = this;
+        }
+        if (semi != null) {
+            _semi = new EmfaticTokenNode(semi);
+            if (_semi._parent != null) throw new RuntimeException();
+            _semi._parent = this;
+        }
 
-	/**
-	 * This method overrides the superclass <code>acceptImpl</code> providing
-	 * the same implementation.  Here <code>this</code> refers to this specific node
-	 * class, so the <code>beginVisit</code> and <code>endVisit</code> methods
-	 * specific to this type in the visitor will be invoked.
-	 */
-	public void acceptImpl(EmfaticASTNodeVisitor visitor) {
-		boolean visitChildren = visitor.beginVisit(this);
-		if (visitChildren) visitChildren(visitor);
-		visitor.endVisit(this);
-	}
+    }
+
+    /**
+     * This method overrides the superclass <code>acceptImpl</code> providing
+     * the same implementation.  Here <code>this</code> refers to this specific node
+     * class, so the <code>beginVisit</code> and <code>endVisit</code> methods
+     * specific to this type in the visitor will be invoked.
+     */
+    public void acceptImpl(EmfaticASTNodeVisitor visitor) {
+        boolean visitChildren = visitor.beginVisit(this);
+        if (visitChildren) visitChildren(visitor);
+        visitor.endVisit(this);
+    }
 
 }
