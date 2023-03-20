@@ -4,13 +4,33 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *     Lucas Bigeardel - fix Generics warns
  *******************************************************************************/
 
 package org.eclipse.emf.emfatic.core.util;
+
+/*-
+ * #%L
+ * Eclipse :: Emfatic
+ * %%
+ * Copyright (C) 2018 - 2023 BlackBelt Technology
+ * %%
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License 2.0 which is available at
+ * http://www.eclipse.org/legal/epl-2.0.
+ *
+ * This Source Code may also be made available under the following Secondary
+ * Licenses when the conditions for such availability set forth in the Eclipse
+ * Public License, v. 2.0 are satisfied: GNU General Public License, version 2
+ * with the GNU Classpath Exception which is
+ * available at https://www.gnu.org/software/classpath/license.html.
+ *
+ * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+ * #L%
+ */
 
 import java.util.Hashtable;
 
@@ -143,12 +163,12 @@ public class EmfaticKeywords
     public static final char KEYWORD_ESCAPE_CHAR = 126;
     public static final String KEYWORD_ESCAPE_STRING = String.valueOf('~');
     private static boolean _isInitialized = false;
-    
+
     private static Hashtable<String, String> _allKeywordsTable;
     private static Hashtable<String, String> _normalKeywordsTable;
     private static Hashtable<String, String> _specialKeywordsTable;
     private static Hashtable<String, String> _hoverTextTable;
-    
+
     private static String _allKeywords[];
     private static String _normalKeywords[];
     private static String _specialKeywords[];

@@ -4,33 +4,53 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
 
 package org.eclipse.gymnast.runtime.core.ast;
 
+/*-
+ * #%L
+ * Eclipse :: Emfatic
+ * %%
+ * Copyright (C) 2018 - 2023 BlackBelt Technology
+ * %%
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License 2.0 which is available at
+ * http://www.eclipse.org/legal/epl-2.0.
+ *
+ * This Source Code may also be made available under the following Secondary
+ * Licenses when the conditions for such availability set forth in the Eclipse
+ * Public License, v. 2.0 are satisfied: GNU General Public License, version 2
+ * with the GNU Classpath Exception which is
+ * available at https://www.gnu.org/software/classpath/license.html.
+ *
+ * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+ * #L%
+ */
+
 /**
  * @author cjdaly@us.ibm.com
- *  
+ *
  */
 public interface ASTNode {
-    
-	//
-	// token oriented methods
-	//
+
+    //
+    // token oriented methods
+    //
 
     /**
      * @return the offset (input position) of the token if this is a token node,
      *         -1 otherwise
      */
     public int getOffset();
-	
-	/**
-	 * @return the token type number of this is a token node, -1 otherwise
-	 */
-	public int getTokenType();
+
+    /**
+     * @return the token type number of this is a token node, -1 otherwise
+     */
+    public int getTokenType();
 
     /**
      * @return the token text if this is a token node, null otherwise
@@ -41,28 +61,28 @@ public interface ASTNode {
      * @return the length of the token text if this is a token node, 0 otherwise
      */
     public int getTextLength();
-    
-    
-    
-	//
-	// basic navigation methods
-	//
-    
-	/**
-	 * @return the number of children of this ASTNode
-	 */
+
+
+
+    //
+    // basic navigation methods
+    //
+
+    /**
+     * @return the number of children of this ASTNode
+     */
     public int getChildCount();
-	
-	/**
-	 * @param index the index of a child ASTNode to get
-	 * @return the child ASTNode at the given index
-	 * @throws IndexOutOfBoundsException when the index is out of bounds
-	 */
+
+    /**
+     * @param index the index of a child ASTNode to get
+     * @return the child ASTNode at the given index
+     * @throws IndexOutOfBoundsException when the index is out of bounds
+     */
     public ASTNode getChild(int index);
 
     /**
      * @return true of the node has child ASTNode, false otherwise
-     */	
+     */
     public boolean hasChildren();
 
     /**
@@ -80,14 +100,14 @@ public interface ASTNode {
      */
     public ASTNode[] getChildren();
 
-	/**
-	 * @return the parent of this ASTNode or null if this is the root node of a tree
-	 */
+    /**
+     * @return the parent of this ASTNode or null if this is the root node of a tree
+     */
     public ASTNode getParent();
 
     /**
      * @return the root ASTNode of this tree
-     */	
+     */
     public ASTNode getRoot();
 
     /**
@@ -99,7 +119,7 @@ public interface ASTNode {
      * @return true if this ASTNode represents a token
      */
     public boolean isTokenNode();
-    
+
 
     //
     // map ASTNode to input position
@@ -121,7 +141,7 @@ public interface ASTNode {
      *         represents
      */
     public int getRangeEnd();
-    
+
 
     //
     // deep search for leaf and token nodes
@@ -148,16 +168,16 @@ public interface ASTNode {
      * @return the last token ASTNode n the sub-tree rooted at this ASTNode
      */
     public ASTNode getLastToken();
-    
-    
+
+
     //
     // mapping input position to ASTNode
     //
-    
-	/**
+
+    /**
      * Searches through the parse tree for the most specific (deepest) node that
      * spans the given position.
-     * 
+     *
      * @param offset
      *            offset in the source text
      * @param length
@@ -175,7 +195,7 @@ public interface ASTNode {
     /**
      * Searches through the parse tree for the most specific (deepest) node that
      * spans the given position.
-     * 
+     *
      * @param offset
      *            offset in the source text
      * @param length
@@ -193,7 +213,7 @@ public interface ASTNode {
     /**
      * Searches through the parse tree for the most specific (deepest) node that
      * spans the given position.
-     * 
+     *
      * @param offset
      *            offset in the source text
      * @param filter
@@ -208,7 +228,7 @@ public interface ASTNode {
     /**
      * Searches through the parse tree for the most specific (deepest) node that
      * spans the given position.
-     * 
+     *
      * @param offset
      *            offset in the source text
      * @param length
@@ -217,12 +237,12 @@ public interface ASTNode {
      */
     public ASTNode getNodeAt(int offset, int length);
 
-    
-    
+
+
     //
     // debugging methods
     //
-    
+
     /**
      * Note: this was used for debugging with incremental parsers
      */
@@ -231,7 +251,7 @@ public interface ASTNode {
     /**
      * Dumps a textual representation of the parse tree rooted at this ASTNode
      * to System.out.
-     * 
+     *
      * @param level
      *            the indentation level to use for dumping this ASTNode
      */
@@ -242,5 +262,5 @@ public interface ASTNode {
      *         the dump() method)
      */
     public String getTypeName();
-    
+
 }
